@@ -1,0 +1,237 @@
+================================================================================
+PRODUCT REQUIREMENTS DOCUMENT (PRD) & MVP SPECIFICATION
+Project Name: International Developer & Designer Portfolio
+Architecture: Headless Laravel API (Backend/CMS) + Next.js App Router (Frontend)
+Target Audience: International Founders, Technical Recruiters, High-Growth Startups
+Version: 1.0 (MVP)
+================================================================================
+
+1. EXECUTIVE SUMMARY & OBJECTIVES
+--------------------------------------------------------------------------------
+1.1 Summary
+A high-performance, design-forward personal portfolio engineered to capture and
+convert international clients (US, UK, EU, Remote-first startups). It pairs a
+headless Laravel backend (powered by Filament for CMS management) with a Next.js 
+frontend utilizing Tailwind CSS and Framer Motion for sub-second page loads, 
+buttery smooth interactions, and top-tier Core Web Vitals.
+
+1.2 Business & Personal Goals
+- Establish credibility as an end-to-end digital product specialist (Web Dev, 
+  UI/UX Design, Mobile App Development, Digital marketing, AI automation workflow).
+- Capture qualified international inbound leads with clear budget qualification.
+- Provide a zero-friction content management system (Filament CMS) to add, 
+  edit, and reorder case studies without touching frontend code.
+
+1.3 Target Performance Metrics
+- Google Lighthouse score: 95+ across Performance, Accessibility, Best Practices, SEO.
+- First Contentful Paint (FCP): < 0.8s.
+- Largest Contentful Paint (LCP): < 1.5s.
+- Cumulative Layout Shift (CLS): 0.
+
+--------------------------------------------------------------------------------
+2. SYSTEM ARCHITECTURE & TECH STACK
+--------------------------------------------------------------------------------
+2.1 Frontend
+- Framework: Next.js (App Router, Server Components + ISR/SSG)
+- Styling: Tailwind CSS (Modern dark/light luxury tech aesthetic)
+- Animations: Framer Motion (Scroll reveals, layout transitions, interactive tiles)
+- Icons: Lucide React
+- Deployment: Vercel
+
+2.2 Backend & CMS
+- Framework: Laravel (Latest Stable Release)
+- Admin Panel / CMS: Filament PHP v3/v4 (Rapid admin CRUD generation)
+- Authentication: Laravel Sanctum (Securing admin routes and API access)
+- Database: PostgreSQL or MySQL
+- Deployment: Railway, DigitalOcean App Platform, or VPS (Forge/Ploi)
+
+2.3 Media & Communication
+- Media Storage: Cloudinary or AWS S3 (WebP/AVIF auto-compression)
+- Transactional Mail: Resend or Mailgun (Instant notification upon inquiry submission)
+
+--------------------------------------------------------------------------------
+3. USER PERSONAS & AUDIENCE TARGETING
+--------------------------------------------------------------------------------
+- Persona A: The Early-Stage Founder (US/EU)
+  Needs: An agile partner who can design wireframes and turn them into a shipped MVP.
+  Trigger: Wants to see clean product demos, fast load speeds, and business outcomes.
+
+- Persona B: The Agency Creative Director
+  Needs: Reliable frontend/full-stack contract talent with attention to detail.
+  Trigger: Fluid animations, flawless responsive design, clean typography.
+
+- Persona C: The Technical Lead / Hiring Manager
+  Needs: Clean code architecture, proper state management, and robust backend APIs.
+  Trigger: Clear tech stack tags, architecture explanations, GitHub links.
+
+--------------------------------------------------------------------------------
+4. MVP FEATURES & CORE FUNCTIONALITY
+--------------------------------------------------------------------------------
+
+4.1 Public Frontend (Next.js)
+1. Hero Section:
+   - Positioning statement focused on client revenue and engineering quality.
+   - Live availability badge: "AVAILABLE FOR CONTRACT / Q2 PROJECTS".
+   - Dual Call-to-Action: "View Selected Work" and "Book a Strategy Call".
+   - Dynamic Interactive Bento Grid or floating 3D/glass preview tiles.
+
+2. Featured Case Studies Showcase:
+   - Filterable by Category: All, Web Development, UI/UX Design, Mobile Apps.
+   - Interactive hover cards featuring live preview links, GitHub badges, and metrics.
+   - Detailed Case Study Template: Overview, Challenge, Architecture/Solution, Results.
+
+3. Service Breakdown:
+   - 3-pillar accordion or interactive tab switcher:
+     * Web App Development & Architecture
+     * UI/UX & Digital Product Design
+     * Cross-Platform Mobile Applications
+   - Deliverables list and tech badges for each pillar.
+
+4. Trust & Proof Section:
+   - Metrics counter (e.g., 99.9% Uptime, Sub-second API responses, 100% On-time delivery).
+   - Testimonial carousel / card grid with international client locations.
+
+5. Lead Capture & Contact Flow:
+   - Interactive inquiry form (Name, Email, Service Type, Budget Range, Project Details).
+   - Direct integration link to Calendly for instant call booking.
+   - WhatsApp / Direct Telegram quick-link button.
+
+4.2 Backend & Admin CMS (Laravel + Filament)
+1. Projects Management:
+   - CRUD for case studies: Title, Slug, Category, Tagline, Overview, Metrics, 
+     Tech Stack tags, Featured Images, Live URLs, GitHub URLs, Display Order.
+2. Inquiries Management:
+   - View inbound leads with details, timestamp, and status ('New', 'Contacted', 'Archived').
+   - Automatic email dispatch to admin on new form submissions.
+3. Testimonials Management:
+   - CRUD for client quotes, avatar uploads, client names, and company roles.
+4. Public REST API Endpoints:
+   - GET  /api/v1/projects (Supports pagination and category filtering)
+   - GET  /api/v1/projects/{slug}
+   - GET  /api/v1/services
+   - GET  /api/v1/testimonials
+   - POST /api/v1/inquiries (Rate-limited, validated lead generation endpoint)
+
+--------------------------------------------------------------------------------
+5. DATABASE SCHEMA SPECIFICATION
+--------------------------------------------------------------------------------
+
+TABLE: projects
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- title: VARCHAR(255) NOT NULL
+- slug: VARCHAR(255) UNIQUE NOT NULL
+- category: ENUM('web-dev', 'mobile-app', 'ui-ux') NOT NULL
+- tagline: VARCHAR(255) NOT NULL
+- client_region: VARCHAR(100) NULL
+- featured_image: VARCHAR(500) NOT NULL
+- overview: TEXT NOT NULL
+- challenges_solutions: TEXT NOT NULL
+- results_metrics: JSON NOT NULL -- e.g. [{"metric": "0.6s Load", "label": "Speed"}]
+- tech_stack: JSON NOT NULL      -- e.g. ["Next.js", "Laravel", "Tailwind"]
+- live_preview_url: VARCHAR(500) NULL
+- github_url: VARCHAR(500) NULL
+- is_featured: BOOLEAN DEFAULT FALSE
+- order: INT DEFAULT 0
+- created_at: TIMESTAMP
+- updated_at: TIMESTAMP
+
+TABLE: inquiries
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- name: VARCHAR(255) NOT NULL
+- email: VARCHAR(255) NOT NULL
+- service_interested: VARCHAR(100) NOT NULL
+- budget_range: VARCHAR(100) NOT NULL
+- message: TEXT NOT NULL
+- status: ENUM('new', 'contacted', 'archived') DEFAULT 'new'
+- ip_address: VARCHAR(45) NULL
+- created_at: TIMESTAMP
+- updated_at: TIMESTAMP
+
+TABLE: testimonials
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- client_name: VARCHAR(255) NOT NULL
+- client_role: VARCHAR(255) NOT NULL
+- client_company: VARCHAR(255) NOT NULL
+- client_avatar: VARCHAR(500) NULL
+- quote: TEXT NOT NULL
+- rating: TINYINT DEFAULT 5
+- is_published: BOOLEAN DEFAULT TRUE
+- created_at: TIMESTAMP
+- updated_at: TIMESTAMP
+
+--------------------------------------------------------------------------------
+6. PRE-SEEDED DUMMY CONTENT SPECIFICATION
+--------------------------------------------------------------------------------
+
+[Hero Copy]
+Badge: "AVAILABLE FOR NEW PROJECTS & CONTRACTS"
+Headline: "Designing & Engineering High-Impact Digital Products That Scale."
+Subheadline: "Full-cycle software engineer and designer crafting lightning-fast web applications, intuitive mobile interfaces, and resilient backend systems for international businesses."
+Primary CTA: "Explore Selected Works"
+Secondary CTA: "Schedule a Discovery Call"
+
+[Dummy Case Study 1: Web Development / SaaS]
+Title: ApexPulse
+Category: web-dev
+Tagline: Real-Time Performance Analytics & Monitoring Dashboard
+Client Region: United States
+Overview: A high-throughput telemetry analytics platform capable of streaming live event feeds with zero interface freeze.
+Challenges & Solutions: Refactored legacy REST polling into WebSockets coupled with a headless Next.js frontend, reducing bandwidth consumption by 65%.
+Metrics:
+- Load Speed: 0.6s Average
+- Session Length: +65% Engagement
+- Availability: 99.98% Uptime
+Tech Stack: Next.js, Laravel API, Redis, Tailwind CSS, Chart.js
+
+[Dummy Case Study 2: Mobile App Development]
+Title: NovaPay
+Category: mobile-app
+Tagline: Cross-Platform Borderless Digital Wallet & Remittance App
+Client Region: United Kingdom
+Overview: A multi-currency mobile wallet supporting cross-border payments, instant peer-to-peer transfers, and offline transaction queues.
+Challenges & Solutions: Implemented secure biometric authentication along with an encrypted SQLite local cache for seamless offline transactions.
+Metrics:
+- App Rating: 4.9 / 5.0 (1,200+ Reviews)
+- Biometric Latency: < 150ms
+- Security: Zero critical vulnerabilities
+Tech Stack: React Native, Expo, Laravel Sanctum, Node.js
+
+[Dummy Case Study 3: UI/UX & Web Design]
+Title: Lumina Studio
+Category: ui-ux
+Tagline: High-Converting Headless E-Commerce Brand Storefront
+Client Region: Germany
+Overview: End-to-end design system and headless storefront built for a luxury lifestyle retailer to eliminate mobile checkout friction.
+Challenges & Solutions: Designed a modular checkout drawer and progressive image rendering pipeline, minimizing mobile bounce rates.
+Metrics:
+- Checkout Conversion: +38% Increase
+- Lighthouse Score: 98/100 Mobile
+- Checkout Path: 1.2s Completion
+Tech Stack: Next.js, Tailwind CSS, Framer Motion, Stripe, Headless CMS
+
+--------------------------------------------------------------------------------
+7. MVP IMPLEMENTATION ROADMAP
+--------------------------------------------------------------------------------
+Phase 1: Backend Foundation (Days 1–3)
+- Initialize fresh Laravel installation.
+- Set up database migrations (projects, inquiries, testimonials).
+- Install and configure Filament Admin Panel.
+- Expose read-only API resources for Projects and Testimonials.
+- Expose rate-limited POST route for Inquiries with email notification trigger.
+
+Phase 2: Frontend Scaffolding & Design (Days 4–7)
+- Initialize Next.js 15 (App Router, Tailwind CSS, Framer Motion).
+- Implement global responsive typography, dark theme palette, and layout shell.
+- Build Bento Grid Hero, animated service tabs, and project cards.
+- Integrate dummy data directly or connect to local Laravel API.
+
+Phase 3: Integration & Interactive States (Days 8–10)
+- Connect Next.js data fetching with Incremental Static Regeneration (ISR).
+- Implement interactive project filtering and modal/page routing.
+- Wire up the contact inquiry form with validation feedback (Zod + React Hook Form).
+
+Phase 4: Optimization, SEO & Launch (Days 11–12)
+- OpenGraph tags, dynamic meta descriptions, and sitemap generation.
+- Core Web Vitals audit and media compression checks.
+- Deploy backend to production hosting (Railway / Forge) and frontend to Vercel.
+================================================================================

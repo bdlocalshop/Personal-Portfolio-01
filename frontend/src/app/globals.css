@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #030712; /* slate-950 */
+    --foreground: #f8fafc; /* slate-50 */
+    --muted: #0f172a;      /* slate-900 */
+    --muted-foreground: #94a3b8; /* slate-400 */
+    --border: #1e293b;     /* slate-800 */
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}

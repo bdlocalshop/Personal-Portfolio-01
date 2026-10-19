@@ -16,9 +16,9 @@ export function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-8"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono uppercase tracking-wider mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
             AVAILABLE FOR NEW PROJECTS & CONTRACTS
           </motion.div>
 
@@ -27,10 +27,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]"
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]"
           >
             Designing & Engineering{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-600 via-teal-500 to-indigo-600 dark:from-cyan-400 dark:via-teal-300 dark:to-indigo-400 bg-clip-text text-transparent">
               High-Impact Digital Products
             </span>{" "}
             That Scale.
@@ -41,7 +41,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed"
+            className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl leading-relaxed"
           >
             Full-cycle software engineer and designer crafting lightning-fast web
             applications, intuitive mobile interfaces, and resilient backend
@@ -66,9 +66,9 @@ export function Hero() {
 
             <a
               href="#contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 hover:text-white font-medium backdrop-blur-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium backdrop-blur-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm"
             >
-              <Calendar className="w-4 h-4 text-slate-400" />
+              <Calendar className="w-4 h-4 text-slate-500 dark:text-slate-400" />
               Schedule a Discovery Call
             </a>
           </motion.div>
@@ -78,18 +78,18 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-14 pt-8 border-t border-slate-900 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-mono"
+            className="mt-14 pt-8 border-t border-slate-200 dark:border-slate-900 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-500 font-mono"
           >
-            <span className="flex items-center gap-1.5">
-              <Terminal className="w-3.5 h-3.5 text-cyan-400" /> Headless Laravel API
+            <span className="flex items-center gap-1.5 text-slate-700 dark:text-slate-400">
+              <Terminal className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" /> Headless Laravel API
             </span>
-            <span className="text-slate-800">•</span>
+            <span className="text-slate-300 dark:text-slate-800">•</span>
             <span>Next.js 15 App Router</span>
-            <span className="text-slate-800">•</span>
+            <span className="text-slate-300 dark:text-slate-800">•</span>
             <span>Tailwind CSS</span>
-            <span className="text-slate-800">•</span>
+            <span className="text-slate-300 dark:text-slate-800">•</span>
             <span>Framer Motion</span>
-            <span className="text-slate-800">•</span>
+            <span className="text-slate-300 dark:text-slate-800">•</span>
             <span>Filament CMS</span>
           </motion.div>
         </div>

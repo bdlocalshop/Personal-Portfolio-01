@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
+    --background: #ffffff;
+    --foreground: #0f172a; /* slate-900 */
+    --muted: #f1f5f9;      /* slate-100 */
+    --muted-foreground: #64748b; /* slate-500 */
+    --border: #e2e8f0;     /* slate-200 */
+  }
+
+  .dark {
     --background: #030712; /* slate-950 */
     --foreground: #f8fafc; /* slate-50 */
     --muted: #0f172a;      /* slate-900 */
@@ -15,5 +25,6 @@
     min-height: 100vh;
     font-feature-settings: "rlig" 1, "calt" 1;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 }

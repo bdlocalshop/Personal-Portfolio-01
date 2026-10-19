@@ -78,16 +78,16 @@ export function ServicesSwitcher() {
   const CurrentIcon = currentService.icon;
 
   return (
-    <section id="services" className="py-20 bg-slate-950/40 relative">
+    <section id="services" className="py-20 bg-slate-100/50 dark:bg-slate-950/40 relative transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs uppercase tracking-wider mb-2">
             <Layers className="w-3.5 h-3.5" /> Core Offerings
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
             Specialized Service Pillars
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
             Tailored engineering and design packages to take founders from raw idea
             to high-performance production releases.
           </p>
@@ -105,15 +105,15 @@ export function ServicesSwitcher() {
                 onClick={() => setActiveTab(service.id)}
                 className={`flex items-center gap-3.5 p-4 rounded-xl text-left border transition-all ${
                   isActive
-                    ? "bg-slate-900 border-cyan-500/50 shadow-lg shadow-cyan-950/30 text-white"
-                    : "bg-slate-900/40 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:border-slate-700"
+                    ? "bg-white dark:bg-slate-900 border-cyan-500 shadow-md shadow-cyan-500/10 dark:shadow-cyan-950/30 text-slate-900 dark:text-white"
+                    : "bg-white/60 dark:bg-slate-900/40 border-slate-200 dark:border-slate-800/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 <div
                   className={`p-2 rounded-lg transition-colors ${
                     isActive
-                      ? "bg-cyan-500/20 text-cyan-300"
-                      : "bg-slate-800 text-slate-400"
+                      ? "bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-300"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                   }`}
                 >
                   <Icon className="w-5 h-5" />
@@ -134,46 +134,46 @@ export function ServicesSwitcher() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8 sm:p-10 backdrop-blur-sm"
+            className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 p-8 sm:p-10 backdrop-blur-sm shadow-xl dark:shadow-none"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Left Column: Description and deliverables */}
               <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 mb-4">
                   <CurrentIcon className="w-3.5 h-3.5" />
                   {currentService.title}
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
                   {currentService.tagline}
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-8">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
                   {currentService.description}
                 </p>
 
                 <div className="space-y-3">
-                  <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">
+                  <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                     Key Deliverables
                   </div>
                   {currentService.deliverables.map((del, dIdx) => (
                     <div key={dIdx} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                      <span className="text-sm text-slate-300">{del}</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400 mt-0.5 shrink-0" />
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{del}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Right Column: Tech Stack & CTA */}
-              <div className="lg:col-span-5 flex flex-col justify-between h-full bg-slate-950/70 p-6 rounded-xl border border-slate-800/80">
+              <div className="lg:col-span-5 flex flex-col justify-between h-full bg-slate-50 dark:bg-slate-950/70 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">
-                    <Cpu className="w-4 h-4 text-cyan-400" /> Technology Foundation
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
+                    <Cpu className="w-4 h-4 text-cyan-500 dark:text-cyan-400" /> Technology Foundation
                   </div>
                   <div className="flex flex-wrap gap-2 mb-8">
                     {currentService.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-3 py-1 rounded-md text-xs font-mono bg-slate-900 text-slate-200 border border-slate-800"
+                        className="px-3 py-1 rounded-md text-xs font-mono bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 shadow-sm"
                       >
                         {tech}
                       </span>
@@ -183,7 +183,7 @@ export function ServicesSwitcher() {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium transition-all group"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white text-sm font-medium transition-all group shadow-sm"
                 >
                   Request a proposal for this pillar
                   <ArrowRight className="w-4 h-4 text-cyan-400 transition-transform group-hover:translate-x-1" />

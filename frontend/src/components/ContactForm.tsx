@@ -79,13 +79,13 @@ export function ContactForm() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs uppercase tracking-wider mb-2">
             <MessageSquare className="w-3.5 h-3.5" /> Start a Conversation
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
             Let’s Build Something Exceptional
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
             Tell me about your product requirements, timelines, and business goals.
             I typically respond within 24 hours.
           </p>
@@ -96,7 +96,7 @@ export function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 sm:p-10 backdrop-blur-md shadow-2xl shadow-cyan-950/20"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/50 p-8 sm:p-10 backdrop-blur-md shadow-2xl shadow-slate-200/50 dark:shadow-cyan-950/20"
         >
           {status === "success" ? (
             <motion.div
@@ -104,19 +104,19 @@ export function ContactForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-12"
             >
-              <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center mb-6 border border-emerald-500/30">
+              <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center mb-6 border border-emerald-500/30">
                 <CheckCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                 Inquiry Received!
               </h3>
-              <p className="text-slate-300 max-w-md mx-auto mb-8 text-sm">
+              <p className="text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-8 text-sm">
                 {feedbackMessage}
               </p>
               <button
                 type="button"
                 onClick={() => setStatus("idle")}
-                className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium transition-colors"
+                className="px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-medium transition-colors"
               >
                 Send another message
               </button>
@@ -124,7 +124,7 @@ export function ContactForm() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {status === "error" && (
-                <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
+                <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-3">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{feedbackMessage}</span>
                 </div>
@@ -133,11 +133,11 @@ export function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Your Name
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                     <input
                       type="text"
                       required
@@ -146,11 +146,11 @@ export function ContactForm() {
                         setFormData({ ...formData, name: e.target.value })
                       }
                       placeholder="e.g. Alex Morgan"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-600"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600"
                     />
                   </div>
                   {fieldErrors.name && (
-                    <p className="mt-1 text-[11px] text-rose-400">
+                    <p className="mt-1 text-[11px] text-rose-500">
                       {fieldErrors.name[0]}
                     </p>
                   )}
@@ -158,11 +158,11 @@ export function ContactForm() {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Email Address
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                     <input
                       type="email"
                       required
@@ -171,11 +171,11 @@ export function ContactForm() {
                         setFormData({ ...formData, email: e.target.value })
                       }
                       placeholder="alex@company.com"
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-600"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600"
                     />
                   </div>
                   {fieldErrors.email && (
-                    <p className="mt-1 text-[11px] text-rose-400">
+                    <p className="mt-1 text-[11px] text-rose-500">
                       {fieldErrors.email[0]}
                     </p>
                   )}
@@ -185,11 +185,11 @@ export function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* Service Interested */}
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Service Interested
                   </label>
                   <div className="relative">
-                    <Briefcase className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <Briefcase className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                     <select
                       value={formData.service_interested}
                       onChange={(e) =>
@@ -198,10 +198,10 @@ export function ContactForm() {
                           service_interested: e.target.value,
                         })
                       }
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
                     >
                       {SERVICES_OPTIONS.map((srv, idx) => (
-                        <option key={idx} value={srv} className="bg-slate-900">
+                        <option key={idx} value={srv} className="bg-white dark:bg-slate-900">
                           {srv}
                         </option>
                       ))}
@@ -211,20 +211,20 @@ export function ContactForm() {
 
                 {/* Budget Range */}
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Estimated Budget
                   </label>
                   <div className="relative">
-                    <DollarSign className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <DollarSign className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
                     <select
                       value={formData.budget_range}
                       onChange={(e) =>
                         setFormData({ ...formData, budget_range: e.target.value })
                       }
-                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
+                      className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors appearance-none"
                     >
                       {BUDGET_OPTIONS.map((bgt, idx) => (
-                        <option key={idx} value={bgt} className="bg-slate-900">
+                        <option key={idx} value={bgt} className="bg-white dark:bg-slate-900">
                           {bgt}
                         </option>
                       ))}
@@ -235,7 +235,7 @@ export function ContactForm() {
 
               {/* Message */}
               <div>
-                <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                   Project Details & Goals
                 </label>
                 <textarea
@@ -246,10 +246,10 @@ export function ContactForm() {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   placeholder="Share a brief overview of your product, tech requirements, target deadlines, and link to existing specs/Figma..."
-                  className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-600"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600"
                 />
                 {fieldErrors.message && (
-                  <p className="mt-1 text-[11px] text-rose-400">
+                  <p className="mt-1 text-[11px] text-rose-500">
                     {fieldErrors.message[0]}
                   </p>
                 )}
